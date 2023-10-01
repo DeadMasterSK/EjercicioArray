@@ -1,13 +1,13 @@
 // Primero creo la funcion designada con el nombre dado
 function ordenarNombresYContar(nombres, ascendente = true) {
+
+    let nombresOrdenados;
     // ordenar los nombres alfaveticamente
-    const nombresOrdenados = [...nombres].sort((a, b) => {
-      if (ascendente) {
-        return a.localeCompare(b);
-      } else {
-        return b.localeCompare(a);
-      }
-    });
+    if (ascendente) {
+      nombresOrdenados = [...nombres].sort((a, b) => a.localeCompare(b));//en acendente 
+    } else {
+      nombresOrdenados = [...nombres].reverse((a, b) => b.localeCompare(a));// en decentente
+    }
   
     // contar cuantos nombres se repiten en el arreglo
     const repeticiones = nombres.reduce((contador, nombre) => {
@@ -17,13 +17,13 @@ function ordenarNombresYContar(nombres, ascendente = true) {
     }, {});
   
     // filtrar y contar cuantos nombres comienzan con A o E
-    const nombresAE = nombres.filter(nombre => nombre.startsWith('A') || nombre.startsWith('E')).length;
+    const nombresConAyconE = nombres.filter(nombre => nombre.startsWith('A') || nombre.startsWith('E')).length;
     // Utilizo startsWith() para ver si la cadena comienza con el caracter A o con el E
 
     return {
       nombresOrdenados,
       repeticiones,
-      nombresAE,
+      nombresConAyconE,
     };
   }
   
@@ -31,5 +31,5 @@ function ordenarNombresYContar(nombres, ascendente = true) {
   const resultado = ordenarNombresYContar(nombres);
   console.log("Nombres ordenados:", resultado.nombresOrdenados, '\n');
   console.log("Nombres repetidos:", resultado.repeticiones, '\n');
-  console.log("Nombres que comienzan con 'A' o 'E':", resultado.nombresAE);
+  console.log("Nombres que comienzan con 'A' o 'E':", resultado.nombresConAyconE);
   
